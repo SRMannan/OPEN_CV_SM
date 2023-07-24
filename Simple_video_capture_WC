@@ -1,0 +1,15 @@
+import cv2
+
+cap = cv2.VideoCapture(0)
+opened = cap.isOpened()
+
+fps = cap.get(cv2.CAP_PROP_FPS)
+print("THE FPS ARE " , fps)
+
+if(opened):
+    while(cap.isOpened()):
+        ret ,  frame = cap.read()
+        if(ret):
+            cv2.imshow("NEW",frame)
+            if(cv2.waitKey(2)):
+                break
