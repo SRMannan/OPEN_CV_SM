@@ -1,0 +1,38 @@
+#import the modules
+import cv2
+import numpy as np
+
+#import the image
+img = cv2.imread("Natural.jpg")
+
+#form the filters (LOW PASS)
+##output_blur = cv2.blur(img , (25,25))
+##output_box = cv2.boxFilter(img , -1 , (25,25) , normalize = 0)
+##output_gauss = cv2.GaussianBlur(img , (5,5) , 0)
+##output_med = cv2.medianBlur(img,3)
+##output_bil = cv2.bilateralFilter(img , 5 , 6, 6)
+
+gaussian_blur = cv2.GaussianBlur(img,(7,7),2)
+
+sharpened1 = cv2.addWeighted(img,1.5,gaussian_blur,-0.5,0)
+
+sharpened2 = cv2.addWeighted(img,3.5,gaussian_blur,-2.5,0)
+
+sharpened3 = cv2.addWeighted(img,7.5,gaussian_blur,-6.5,0)
+
+
+##display
+cv2.imshow("ORIGINAL",img)
+##cv2.imshow("BLUR",output_blur)
+##cv2.imshow("BOX",output_box)
+##cv2.imshow("GAUSS",output_gauss)
+##cv2.imshow("MEDBLUR",output_med)
+##cv2.imshow("BILAT",output_bil)
+cv2.imshow("SHARP_1" , sharpened1)
+cv2.imshow("SHARP_2" , sharpened2)
+cv2.imshow("SHARP_3" , sharpened3)
+
+
+
+
+cv2.waitKey(2000)
