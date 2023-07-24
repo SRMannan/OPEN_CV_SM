@@ -1,0 +1,32 @@
+#import the modules
+import cv2
+import numpy as np
+
+#import the image
+img = cv2.imread("Natural.jpg")
+
+#form the filters (LOW PASS)
+kernel_identity = np.array([[0,0,0],[0,1,0],[0,0,0]])
+kernel_3 = np.ones((3,3) , dtype = np.float32)
+kernel_3 = kernel_3 / 9
+kernel_11 = np.ones((11,11) , dtype = np.float32)
+kernel_11 = kernel_11 / 121
+
+#form motionblur filter of 15 * 15
+size = 100
+kernel_d = np.zeros((size,size))
+kernel_d[int((size-1)/2) , :] = np.ones(size)
+kernel_d = kernel_d/size     ##no divsion by 225 but by 15
+
+#apply the filters
+output1 = cv2.filter2D(img , -1 , kernel_identity)
+output2 = cv2.filter2D(img , -1 , kernel_3)
+output3 = cv2.filter2D(img , -1 , kernel_11)
+output4 = cv2.filter2D(img , -1 , kernel_d)
+
+#show the image
+cv2.imshow("SAME" , output1)
+cv2.imshow("3BLUR" , output2)
+cv2.imshow("11BLUR" , output3)
+cv2.imshow("M_BLUR",output4)
+cv2.waitKey(2000)
