@@ -1,0 +1,29 @@
+import cv2
+import numpy as np
+
+canvas = np.zeros((500,500,3))
+
+##creating a line
+cv2.line(canvas ,(10,100) , (50,100) , (255,0,0) , 3, cv2.LINE_4)
+
+##creating a rectangle (HOLLOW)
+cv2.rectangle(canvas , (50,50) , (100,100) , (0,255,50) , 3)
+
+##creating a rectangle (SOLID)
+cv2.rectangle(canvas , (100,100) , (200,200) , (0,255,0) , -1)
+
+#creating a circle
+cv2.circle(canvas , (250,200) , 50 , (0,0,100) , 4)
+
+##putting some text
+cv2.putText(
+    canvas ,
+    text = "HI THERE" ,
+    org = (300,300) ,
+    fontFace = cv2.FONT_HERSHEY_DUPLEX ,
+    fontScale = 1 ,
+    color = (0,128,128) ,
+    thickness = 3
+)
+cv2.imshow('RESULT' , canvas)
+cv2.waitKey(3000)
