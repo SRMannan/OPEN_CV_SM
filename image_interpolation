@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+
+image = cv2.imread("STEVIE.png")
+
+image_re_linear = cv2.resize(image , None , fx = 5.5 , fy = 5.5 , interpolation = cv2.INTER_LINEAR)
+
+image_re_cubic = cv2.resize(image , None , fx = 5.5 , fy = 5.5 , interpolation = cv2.INTER_CUBIC)
+
+cv2.imshow("LINEAR" , image_re_linear)
+cv2.imshow("CUBIC" , image_re_cubic)
+cv2.imshow("orginal" , image)
+
+if(cv2.waitKey() == ord('q')):
+    cv2.destroyAllWindows()
