@@ -1,0 +1,31 @@
+import cv2
+import numpy as np
+
+image = cv2.imread("JM.jpeg", cv2.IMREAD_GRAYSCALE)
+
+
+##APPLYING EDGE DETECTION
+##SOBEL EDGE X
+sobel_image_x = cv2.Sobel(image , -1 , 1 , 0)
+##sobel edge y
+sobel_image_y = cv2.Sobel(image , -1 , 0 , 1)
+##SOBEL XY
+sobel_image_xy = cv2.addWeighted(sobel_image_x , 0.5 , sobel_image_y , 0.5 , 0)
+
+
+##LAPLACE
+laplace_image = cv2.Laplacian(image , -1)
+
+##CANNY EDGE
+canny_image = cv2.Canny(image , 50 , 80)
+
+##showing results
+cv2.imshow("IMAGE",image)
+cv2.imshow("SOBEL_X",sobel_image_x)
+cv2.imshow("SOBEL_Y",sobel_image_y)
+cv2.imshow("SOBEL_XY",sobel_image_xy)
+cv2.imshow("LAPLACE",laplace_image)
+cv2.imshow("CANNY",canny_image)
+
+
+cv2.waitKey(2000)
