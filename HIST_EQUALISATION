@@ -1,0 +1,12 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+image = cv2.imread("UE.jpg" , cv2.IMREAD_GRAYSCALE)
+
+clahe = cv2.createCLAHE(clipLimit = 5)
+final_image = clahe.apply(image)
+
+cv2.imshow("ORIGINAL",image)
+cv2.imshow("FINAL",final_image)
+cv2.waitKey(2000)
