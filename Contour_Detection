@@ -1,0 +1,20 @@
+##This is Colab compatible code 
+
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+
+#reading image , convert to grayscale , applying threshold to get a binary image
+image = cv2.imread("Coins.jpeg")
+grey = cv2.cvtColor(image , cv2.COLOR_BGR2GRAY)
+ret , binary = cv2.threshold(grey , 0 , 255 , cv2.THRESH_BINARY + cv2.THRESH_TRIANGLE)
+
+#finding contours
+cont , heir = cv2.findContours(binary , mode = cv2.RETR_TREE , method = cv2.CHAIN_APPROX_SIMPLE)
+
+#drawing the contours
+imagen = image.copy()
+imagen = cv2.drawContours(image , cont , -1 , (0,255,0) , 4 , cv2.LINE_4)
+
+cv2_imshow(binary)
+cv2_imshow(imagen)
